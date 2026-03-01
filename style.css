@@ -26,6 +26,31 @@
   --font-display:     'Poppins', sans-serif;
 }
 
+/* Light mode overrides */
+body.light {
+  --bg-primary:       #f8fafc;
+  --bg-secondary:     #f1f5f9;
+  --card-bg:          #ffffff;
+  --card-bg-hover:    #f8fafc;
+  --text-primary:     #0f172a;
+  --text-secondary:   #334155;
+  --text-muted:       #64748b;
+  --glass-bg:         rgba(255, 255, 255, 0.75);
+  --glass-border:     rgba(124, 58, 237, 0.25);
+  --shadow:           0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+body.light .navbar.scrolled {
+  background: rgba(248, 250, 252, 0.9);
+  border-bottom-color: rgba(124, 58, 237, 0.2);
+}
+
+body.light .mobile-menu {
+  background: rgba(248, 250, 252, 0.97);
+}
+
+body.light #hero-canvas { opacity: 0.6; }
+
 /* =============================================================
    RESET & BASE
 ============================================================= */
@@ -439,6 +464,34 @@ button:hover ~ .cursor {
   padding-left: 0.5rem;
 }
 
+/* Nav actions (theme toggle + hamburger) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 0.85rem;
+}
+
+.theme-toggle:hover {
+  color: var(--accent-purple);
+  border-color: var(--accent-purple);
+  background: rgba(124, 58, 237, 0.1);
+  transform: scale(1.1);
+}
+
 /* =============================================================
    HERO SECTION
 ============================================================= */
@@ -451,10 +504,12 @@ button:hover ~ .cursor {
   overflow: hidden;
 }
 
-#particles-js {
+#hero-canvas {
   position: absolute;
   inset: 0;
   z-index: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .floating-badges {
@@ -1305,6 +1360,139 @@ button:hover ~ .cursor {
 .github-cta {
   text-align: center;
 }
+
+/* Dynamic GitHub profile card */
+.github-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--glass-border);
+  transition: var(--transition);
+}
+
+.github-profile-card:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow: var(--shadow-glow);
+}
+
+.github-profile-avatar-wrap {
+  flex-shrink: 0;
+}
+
+.github-profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-purple);
+  object-fit: cover;
+  background: var(--card-bg);
+}
+
+.github-profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.github-profile-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.github-profile-login {
+  color: var(--accent-purple);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.github-profile-bio {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.github-profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.gh-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.gh-meta-item i {
+  color: var(--accent-purple);
+}
+
+/* Contribution graph */
+.github-contrib-wrap {
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.github-contrib-graph {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: var(--radius-sm);
+}
+
+/* =============================================================
+   RESUME SECTION
+============================================================= */
+.resume-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resume-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.resume-embed-wrap {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+.resume-iframe {
+  width: 100%;
+  min-height: 480px;
+  height: 70vh;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .resume-iframe { min-height: 320px; height: 60vh; }
+  .github-profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .github-profile-meta { justify-content: center; }
+}
+
 
 /* =============================================================
    HOBBIES SECTION
