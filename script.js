@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const CONNECTION_DIST = isMobile ? 90 : 130;
     const SPEED = 0.35;
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
+    // Renderer (antialias off on mobile for performance, on for desktop)
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
@@ -582,9 +582,10 @@ document.addEventListener('DOMContentLoaded', () => {
      GITHUB API – live profile card (cached 24 h)
   ---------------------------------------------------------- */
   (function loadGitHubProfile() {
-    const GITHUB_USER = 'debangshidas04304';
-    const CACHE_KEY   = 'gh_profile_' + GITHUB_USER;
-    const CACHE_TTL   = 24 * 60 * 60 * 1000; // 24 hours
+    const GITHUB_USER   = 'debangshidas04304';
+    const CACHE_KEY     = 'gh_profile_' + GITHUB_USER;
+    const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours
+    const FALLBACK_BIO  = 'Full Stack Developer · MCA Student · MERN Enthusiast';
 
     function renderProfile(data) {
       const avatar    = document.getElementById('gh-avatar');
@@ -598,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (avatar)    { avatar.src = data.avatar_url; avatar.alt = data.name || GITHUB_USER; }
       if (name)      name.textContent    = data.name    || GITHUB_USER;
       if (login)     login.textContent   = '@' + data.login;
-      if (bio)       bio.textContent     = data.bio     || 'Full Stack Developer · MCA Student · MERN Enthusiast';
+      if (bio)       bio.textContent     = data.bio     || FALLBACK_BIO;
       if (repos)     repos.textContent   = data.public_repos;
       if (followers) followers.textContent = data.followers;
       if (following) following.textContent = data.following;
@@ -621,9 +622,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch (_) {}
       })
       .catch(() => {
-        // Silently fall back to static placeholder values already in the DOM
+        // Silently fall back to placeholder bio
         const bio = document.getElementById('gh-bio');
-        if (bio) bio.textContent = 'Full Stack Developer · MCA Student · MERN Enthusiast';
+        if (bio) bio.textContent = FALLBACK_BIO;
       });
   }());
 
