@@ -1,107 +1,155 @@
-<h1 align="center">Hi 👋, I'm Debangshi Das</h1>
-<h3 align="center">MCA Student | Aspiring Full Stack Developer | MERN Stack Enthusiast</h3>
+# Debangshi Das — Personal Portfolio Website
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=yourusername&label=Profile%20views&color=0e75b6&style=flat" alt="profile-views" />
+  <img src="https://komarev.com/ghpvc/?username=debangshidas04304&label=Profile%20views&color=7c3aed&style=flat" alt="profile-views" />
+</p>
+
+<p align="center">
+  <strong>MCA Student | Aspiring Full Stack Developer | MERN Stack Enthusiast</strong><br/>
+  <em>"Every day I try to become better than I was yesterday."</em>
 </p>
 
 ---
 
-## 🚀 About Me
+## Project Overview
 
-- 🎓 MCA Student at MAKAUT, West Bengal  
-- 💻 Passionate about Full Stack Web Development  
-- 🌱 Currently learning **Advanced MERN Stack & Backend Development**  
-- 🧠 Love solving programming problems  
-- 🎯 Seeking entry-level opportunities in the IT industry  
-- ✨ Improving myself every single day  
+A **complete, modern, responsive personal portfolio website** built with pure HTML, CSS, and JavaScript — no build tools required. All libraries are loaded via CDN.
+
+### Features
+- Dark theme with glassmorphism UI
+- Purple-to-blue gradient accent system
+- Typewriter effect (Typed.js) in hero section
+- Animated particle background (Particles.js)
+- Smooth entrance & scroll animations (GSAP + AOS)
+- Fully responsive — mobile first
+- Animated counters, progress bars, SVG rings
+- 3D flip cards for hobbies
+- GitHub stats embedded with Tokyo Night theme
+- Swiper.js project carousel on mobile
+
+### File Structure
+```
+debangshidas04304/
+├── index.html        # Main portfolio page (all 11 sections)
+├── style.css         # Complete styles with CSS custom properties
+├── script.js         # All JS: GSAP, Particles, Typed, AOS, Swiper...
+├── assets/           # Place any local images/icons here
+├── .nojekyll         # Required for GitHub Pages
+└── README.md         # This file
+```
+
+### Libraries Used (CDN)
+| Library | Purpose |
+|---|---|
+| Tailwind CSS | Utility-first styling |
+| Alpine.js | Reactive tabs & toggles |
+| GSAP + ScrollTrigger | Hero animations & scroll effects |
+| AOS | Scroll-reveal section animations |
+| Typed.js | Typewriter effect |
+| Particles.js | Hero particle background |
+| Swiper.js | Mobile project carousel |
+| Font Awesome 6 | Icons |
+| Google Fonts | Inter + Poppins typography |
 
 ---
 
-## 🛠️ Tech Stack
+## Customize
 
-### 👩‍💻 Languages
+Open `index.html` and update:
+
+1. **Name / Bio** — Search for `Debangshi Das` and update personal info
+2. **Social Links** — Find `href="#"` near GitHub/LinkedIn/Gmail icons and add real URLs
+3. **Resume** — Replace `href="#"` on the "Download Resume" button with a link to your PDF
+4. **Project URLs** — Update GitHub and Live Demo links in the Projects section
+5. **Contact Email** — Update the email address in the Contact section
+6. **GitHub Stats** — The `debangshidas04304` username is already set in the stat card URLs
+
+To change colors, edit CSS variables in `style.css`:
+```css
+:root {
+  --accent-purple: #7c3aed;
+  --accent-blue: #2563eb;
+  --bg-primary: #0a0a0f;
+  --card-bg: #1a1a2e;
+}
+```
+
+---
+
+## Deploy to GitHub Pages
+
+### Step 1 — Enable GitHub Pages
+1. Go to your repository on GitHub
+2. Click **Settings** → **Pages** (in the left sidebar)
+3. Under **Source**, select **Deploy from a branch**
+4. Set branch to `main` (or `master`) and folder to `/ (root)`
+5. Click **Save**
+
+### Step 2 — Wait for Deployment
+- GitHub will build and deploy your site automatically
+- Usually takes 1–3 minutes
+- You'll see a green checkmark and the URL: `https://debangshidas04304.github.io/debangshidas04304/`
+
+### Step 3 — Visit Your Site
+Open: **https://debangshidas04304.github.io/debangshidas04304/**
+
+> **Note:** The `.nojekyll` file in the root is required to prevent GitHub Pages from ignoring files that start with an underscore.
+
+---
+
+## GitHub Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=debangshidas04304&show_icons=true&theme=tokyonight&hide_border=true" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=debangshidas04304&theme=tokyonight&hide_border=true" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=debangshidas04304&layout=compact&theme=tokyonight&hide_border=true" />
+</p>
+
+---
+
+## Tech Stack
+
+### Languages
 <p>
   <img src="https://skillicons.dev/icons?i=c,cpp,js,python,php" />
 </p>
 
-### 🌐 Frontend
+### Frontend
 <p>
   <img src="https://skillicons.dev/icons?i=html,css,bootstrap,react" />
 </p>
 
-### ⚙️ Backend
+### Backend
 <p>
   <img src="https://skillicons.dev/icons?i=nodejs,express" />
 </p>
 
-### 🗄️ Database
+### Database
 <p>
   <img src="https://skillicons.dev/icons?i=mongodb,mysql" />
 </p>
 
----
-
-## 📚 Currently Learning
+### Currently Learning
 <p>
   <img src="https://skillicons.dev/icons?i=redux,typescript,git,github" />
 </p>
 
-- REST APIs  
-- Authentication & Authorization  
-- Clean Code Practices  
-
 ---
 
-## 💼 Experience
+## Connect With Me
 
-**Teacher**  
-📍 Cambridge English Medium School  
-🗓️ Jan 2025 – Jan 2026  
-
----
-
-## 📊 GitHub Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=yourusername&show_icons=true&theme=tokyonight" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=yourusername&theme=tokyonight" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=yourusername&layout=compact&theme=tokyonight" />
-</p>
-
----
-
-## 🏆 Strengths
-
-✔ Quick Learner  
-✔ Strong Communication  
-✔ Problem Solver  
-✔ Team Player  
-✔ Self-Motivated  
-
----
-
-## 🎨 Hobbies
-
-🎧 Music | 🍳 Cooking | 🎬 Movies | 💃 Dancing | 💬 Spending time with friends  
-
----
-
-## 📫 Connect With Me
-
-<p>
-  <a href="https://linkedin.com/in/yourlinkedin"><img src="https://skillicons.dev/icons?i=linkedin" /></a>
-  <a href="youremail@example.com"><img src="https://skillicons.dev/icons?i=gmail" /></a>
-</p>
+- Portfolio: [debangshidas04304.github.io/debangshidas04304](https://debangshidas04304.github.io/debangshidas04304/)
+- LinkedIn: [linkedin.com/in/yourlinkedin](https://linkedin.com/in/yourlinkedin)
+- GitHub: [github.com/debangshidas04304](https://github.com/debangshidas04304)
 
 ---
 
 <p align="center">
-  ⭐ “Every day I try to become better than I was yesterday.”
+  <em>"Every day I try to become better than I was yesterday."</em>
 </p>
