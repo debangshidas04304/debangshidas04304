@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Debangshi Das – MCA Student, Aspiring Full Stack Developer & MERN Stack Enthusiast from MAKAUT, West Bengal." />
+  <meta name="keywords" content="Debangshi Das, Full Stack Developer, MERN Stack, MCA, MAKAUT, Portfolio, React, Node.js" />
+  <meta name="author" content="Debangshi Das" />
+  <meta property="og:title" content="Debangshi Das | Full Stack Developer Portfolio" />
+  <meta property="og:description" content="MCA Student | Aspiring Full Stack Developer | MERN Stack Enthusiast from MAKAUT, West Bengal." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://github.com/debangshidas04304" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Debangshi Das | Full Stack Developer Portfolio" />
+  <meta name="twitter:description" content="MCA Student | Aspiring Full Stack Developer | MERN Stack Enthusiast." />
+  <title>Debangshi Das | Full Stack Developer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- Swiper.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Tailwind config -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'], poppins: ['Poppins', 'sans-serif'] },
+          colors: {
+            primary: '#7c3aed',
+            secondary: '#2563eb',
+            dark: '#0a0a0f',
+            card: '#1a1a2e',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="dark" x-data="{ mobileOpen: false }">
+
+  <!-- ============================================================
+       PRELOADER
+  ============================================================ -->
+  <div id="preloader" role="status" aria-label="Loading">
+    <div class="preloader-inner">
+      <div class="preloader-logo">DD</div>
+      <div class="preloader-spinner"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       CUSTOM CURSOR
+  ============================================================ -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" aria-label="Debangshi Das Home">DD</a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#learning" class="nav-link">Learning</a></li>
+        <li><a href="#github-stats" class="nav-link">GitHub</a></li>
+        <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Hamburger -->
+      <button
+        class="hamburger"
+        @click="mobileOpen = !mobileOpen"
+        :aria-expanded="mobileOpen"
+        aria-controls="mobile-menu"
+        aria-label="Toggle mobile menu"
+      >
+        <span class="ham-bar" :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"></span>
+        <span class="ham-bar" :class="mobileOpen ? 'opacity-0' : ''"></span>
+        <span class="ham-bar" :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="mobile-menu"
+      :class="mobileOpen ? 'open' : ''"
+      role="menu"
+      aria-label="Mobile navigation"
+    >
+      <ul role="list">
+        <li><a href="#about"       class="mobile-link" @click="mobileOpen = false" role="menuitem">About</a></li>
+        <li><a href="#skills"      class="mobile-link" @click="mobileOpen = false" role="menuitem">Skills</a></li>
+        <li><a href="#experience"  class="mobile-link" @click="mobileOpen = false" role="menuitem">Experience</a></li>
+        <li><a href="#projects"    class="mobile-link" @click="mobileOpen = false" role="menuitem">Projects</a></li>
+        <li><a href="#learning"    class="mobile-link" @click="mobileOpen = false" role="menuitem">Learning</a></li>
+        <li><a href="#github-stats" class="mobile-link" @click="mobileOpen = false" role="menuitem">GitHub</a></li>
+        <li><a href="#hobbies"     class="mobile-link" @click="mobileOpen = false" role="menuitem">Hobbies</a></li>
+        <li><a href="#contact"     class="mobile-link" @click="mobileOpen = false" role="menuitem">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="hero" class="hero-section" aria-label="Hero introduction">
+    <!-- Particles background -->
+    <div id="particles-js" aria-hidden="true"></div>
+
+    <!-- Floating tech badges -->
+    <div class="floating-badges" aria-hidden="true">
+      <span class="badge badge-1">HTML</span>
+      <span class="badge badge-2">CSS</span>
+      <span class="badge badge-3">JS</span>
+      <span class="badge badge-4">React</span>
+      <span class="badge badge-5">Node</span>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-greeting" id="heroGreeting">👋 Hello, I'm</p>
+      <h1 class="hero-name" id="heroName">Debangshi Das</h1>
+      <h2 class="hero-role" id="heroRole">
+        <span id="typed-text"></span>
+      </h2>
+      <p class="hero-quote" id="heroQuote">"Every day I try to become better than I was yesterday."</p>
+
+      <div class="hero-buttons" id="heroButtons">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fas fa-briefcase" aria-hidden="true"></i> View My Work
+        </a>
+        <a href="#" class="btn btn-outline" aria-label="Download Resume">
+          <i class="fas fa-download" aria-hidden="true"></i> Download Resume
+        </a>
+      </div>
+
+      <div class="hero-socials" id="heroSocials">
+        <a href="https://github.com/debangshidas04304" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="#" class="social-icon" aria-label="LinkedIn Profile">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <a href="#" class="social-icon" aria-label="Gmail">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT SECTION
+  ============================================================ -->
+  <section id="about" class="section" aria-label="About me">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="about-grid">
+        <!-- Avatar -->
+        <div class="about-avatar-wrap" data-aos="fade-right" data-aos-delay="100">
+          <div class="about-avatar" aria-label="Avatar with initials DD">
+            <span class="avatar-initials">DD</span>
+            <div class="avatar-ring" aria-hidden="true"></div>
+            <div class="avatar-ring-2" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="about-bio" data-aos="fade-left" data-aos-delay="200">
+          <h3 class="about-heading">Passionate about building the web</h3>
+          <p class="about-text">
+            Hi! I'm <strong>Debangshi Das</strong>, an MCA student at <strong>MAKAUT, West Bengal</strong>,
+            driven by a deep passion for full-stack web development. I love crafting seamless digital
+            experiences — from clean, responsive frontends to robust backend APIs.
+          </p>
+          <p class="about-text">
+            My primary focus is the <strong>MERN Stack</strong> (MongoDB, Express, React, Node.js),
+            and I'm constantly expanding my skillset with TypeScript, Redux, and modern
+            development best practices. I believe clean code is not just a habit — it's a
+            philosophy.
+          </p>
+          <p class="about-text">
+            Outside tech, I've spent a year as a teacher at
+            <strong>Cambridge English Medium School</strong>, where I honed my communication
+            and mentorship skills. I bring that same clarity and patience to every line of code I write.
+          </p>
+
+          <div class="about-tags" aria-label="Key interests">
+            <span class="tag">Full Stack Dev</span>
+            <span class="tag">MERN Stack</span>
+            <span class="tag">Open Source</span>
+            <span class="tag">Problem Solving</span>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-grid" aria-label="Key statistics">
+            <div class="stat-card">
+              <span class="stat-number" data-target="3">0</span><span class="stat-plus">+</span>
+              <p class="stat-label">Projects</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+              <p class="stat-label">Skills</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="12">0</span>
+              <p class="stat-label">Months Teaching</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS SECTION
+  ============================================================ -->
+  <section id="skills" class="section section-alt" aria-label="Skills">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+        <p class="section-subtitle">Technologies I work with and explore</p>
+      </div>
+
+      <!-- Alpine.js Tabs -->
+      <div
+        x-data="{
+          activeTab: 'languages',
+          tabs: ['languages','frontend','backend','database','learning'],
+          skills: {
+            languages: [
+              { name:'C',          icon:'c',          pct:75 },
+              { name:'C++',        icon:'cpp',        pct:70 },
+              { name:'JavaScript', icon:'js',         pct:85 },
+              { name:'Python',     icon:'python',     pct:65 },
+              { name:'PHP',        icon:'php',        pct:60 }
+            ],
+            frontend: [
+              { name:'HTML',      icon:'html',      pct:90 },
+              { name:'CSS',       icon:'css',       pct:85 },
+              { name:'Bootstrap', icon:'bootstrap', pct:80 },
+              { name:'React',     icon:'react',     pct:75 }
+            ],
+            backend: [
+              { name:'Node.js', icon:'nodejs', pct:70 },
+              { name:'Express', icon:'express', pct:70 }
+            ],
+            database: [
+              { name:'MongoDB', icon:'mongodb', pct:65 },
+              { name:'MySQL',   icon:'mysql',   pct:65 }
+            ],
+            learning: [
+              { name:'Redux',      icon:'redux',      pct:40 },
+              { name:'TypeScript', icon:'typescript', pct:45 }
+            ]
+          }
+        }"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <!-- Tab Buttons -->
+        <div class="skills-tabs" role="tablist" aria-label="Skill categories">
+          <template x-for="tab in tabs" :key="tab">
+            <button
+              :id="'tab-' + tab"
+              role="tab"
+              :aria-selected="activeTab === tab"
+              :aria-controls="'panel-' + tab"
+              class="skills-tab"
+              :class="activeTab === tab ? 'active' : ''"
+              @click="activeTab = tab"
+              x-text="tab.charAt(0).toUpperCase() + tab.slice(1)"
+            ></button>
+          </template>
+        </div>
+
+        <!-- Tab Panels -->
+        <template x-for="tab in tabs" :key="tab">
+          <div
+            :id="'panel-' + tab"
+            role="tabpanel"
+            :aria-labelledby="'tab-' + tab"
+            class="skills-grid"
+            x-show="activeTab === tab"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform translate-y-4"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+          >
+            <template x-for="skill in skills[tab]" :key="skill.name">
+              <div class="skill-card" :data-tilt="true">
+                <div class="skill-icon-wrap">
+                  <img
+                    :src="`https://skillicons.dev/icons?i=${skill.icon}`"
+                    :alt="skill.name + ' icon'"
+                    class="skill-icon"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="skill-name" x-text="skill.name"></p>
+                <div class="skill-bar-wrap" role="progressbar" :aria-valuenow="skill.pct" aria-valuemin="0" aria-valuemax="100" :aria-label="skill.name + ' proficiency'">
+                  <div class="skill-bar" :data-pct="skill.pct" style="width:0%"></div>
+                </div>
+                <span class="skill-pct" x-text="skill.pct + '%'"></span>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCE SECTION
+  ============================================================ -->
+  <section id="experience" class="section" aria-label="Experience">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">My <span class="gradient-text">Experience</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+        <p class="section-subtitle">Professional journey so far</p>
+      </div>
+
+      <div class="timeline" role="list">
+        <!-- Entry 1 -->
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100" role="listitem">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Teacher</h3>
+                <p class="timeline-company">
+                  <i class="fas fa-building" aria-hidden="true"></i>
+                  Cambridge English Medium School
+                </p>
+              </div>
+              <span class="timeline-date">
+                <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                Jan 2025 – Jan 2026
+              </span>
+            </div>
+            <ul class="timeline-responsibilities" aria-label="Responsibilities">
+              <li>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                Strong Communication Skills – Delivered clear, engaging lessons to students
+              </li>
+              <li>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                Student Mentorship – Guided and motivated students toward academic growth
+              </li>
+              <li>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                Curriculum Delivery – Executed structured lesson plans effectively
+              </li>
+              <li>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                English Language Instruction – Strengthened students' English proficiency
+              </li>
+            </ul>
+            <div class="timeline-tags" aria-label="Skills used">
+              <span class="tag">Teaching</span>
+              <span class="tag">Communication</span>
+              <span class="tag">Mentorship</span>
+              <span class="tag">English</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MCA Entry -->
+        <div class="timeline-item" data-aos="fade-left" data-aos-delay="200" role="listitem">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">MCA Student</h3>
+                <p class="timeline-company">
+                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                  MAKAUT, West Bengal
+                </p>
+              </div>
+              <span class="timeline-date">
+                <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                2024 – Present
+              </span>
+            </div>
+            <ul class="timeline-responsibilities" aria-label="Highlights">
+              <li>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                Pursuing Master of Computer Applications with focus on web technologies
+              </li>
+              <li>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                Building real-world projects using MERN Stack
+              </li>
+              <li>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                Actively exploring open-source contributions and modern dev practices
+              </li>
+            </ul>
+            <div class="timeline-tags" aria-label="Skills used">
+              <span class="tag">MERN Stack</span>
+              <span class="tag">Algorithms</span>
+              <span class="tag">Databases</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS SECTION
+  ============================================================ -->
+  <section id="projects" class="section section-alt" aria-label="Projects">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">My <span class="gradient-text">Projects</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+        <p class="section-subtitle">Things I've built with passion</p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="filter-buttons" role="group" aria-label="Project filter" data-aos="fade-up" data-aos-delay="100">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="frontend">Frontend</button>
+        <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+        <button class="filter-btn" data-filter="backend">Backend</button>
+      </div>
+
+      <!-- Desktop Grid -->
+      <div class="projects-grid" id="projectsGrid" data-aos="fade-up" data-aos-delay="200">
+
+        <!-- Project 1 -->
+        <article class="project-card glass-card" data-category="fullstack" aria-label="E-Commerce App project">
+          <div class="project-img" aria-hidden="true">
+            <div class="project-img-overlay">
+              <i class="fas fa-shopping-cart project-icon"></i>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category-badge fullstack">Full Stack</div>
+            <h3 class="project-title">E-Commerce App</h3>
+            <p class="project-desc">
+              Full-featured e-commerce platform with product catalog, shopping cart, user authentication, and payment integration built with the MERN stack.
+            </p>
+            <div class="project-tags" aria-label="Technologies used">
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Express</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-icon" aria-label="View E-Commerce App on GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <a href="#" class="btn-icon btn-icon-primary" aria-label="View E-Commerce App live demo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card glass-card" data-category="fullstack" aria-label="Task Manager project">
+          <div class="project-img project-img-2" aria-hidden="true">
+            <div class="project-img-overlay">
+              <i class="fas fa-tasks project-icon"></i>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category-badge fullstack">Full Stack</div>
+            <h3 class="project-title">Task Manager</h3>
+            <p class="project-desc">
+              Productivity application featuring drag-and-drop task management, real-time updates, and user authentication with JWT tokens.
+            </p>
+            <div class="project-tags" aria-label="Technologies used">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">JWT</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-icon" aria-label="View Task Manager on GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <a href="#" class="btn-icon btn-icon-primary" aria-label="View Task Manager live demo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card glass-card" data-category="frontend" aria-label="Portfolio Website project">
+          <div class="project-img project-img-3" aria-hidden="true">
+            <div class="project-img-overlay">
+              <i class="fas fa-user-circle project-icon"></i>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category-badge frontend">Frontend</div>
+            <h3 class="project-title">Portfolio Website</h3>
+            <p class="project-desc">
+              Personal developer portfolio with smooth GSAP animations, particle effects, interactive skills showcase, and fully responsive design.
+            </p>
+            <div class="project-tags" aria-label="Technologies used">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">GSAP</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-icon" aria-label="View Portfolio on GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <a href="#" class="btn-icon btn-icon-primary" aria-label="View Portfolio live demo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Mobile Swiper -->
+      <div class="swiper projects-swiper" aria-label="Projects carousel (mobile)" style="display:none;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <article class="project-card glass-card" aria-label="E-Commerce App project">
+              <div class="project-img" aria-hidden="true">
+                <div class="project-img-overlay"><i class="fas fa-shopping-cart project-icon"></i></div>
+              </div>
+              <div class="project-body">
+                <div class="project-category-badge fullstack">Full Stack</div>
+                <h3 class="project-title">E-Commerce App</h3>
+                <p class="project-desc">Full-featured e-commerce platform with cart, auth, and payments built with MERN stack.</p>
+                <div class="project-tags">
+                  <span class="tech-tag">MongoDB</span><span class="tech-tag">Express</span><span class="tech-tag">React</span><span class="tech-tag">Node.js</span>
+                </div>
+                <div class="project-links">
+                  <a href="#" class="btn-icon"><i class="fab fa-github"></i> GitHub</a>
+                  <a href="#" class="btn-icon btn-icon-primary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article class="project-card glass-card" aria-label="Task Manager project">
+              <div class="project-img project-img-2" aria-hidden="true">
+                <div class="project-img-overlay"><i class="fas fa-tasks project-icon"></i></div>
+              </div>
+              <div class="project-body">
+                <div class="project-category-badge fullstack">Full Stack</div>
+                <h3 class="project-title">Task Manager</h3>
+                <p class="project-desc">Productivity app with drag-and-drop tasks and user authentication.</p>
+                <div class="project-tags">
+                  <span class="tech-tag">React</span><span class="tech-tag">Node.js</span><span class="tech-tag">MongoDB</span><span class="tech-tag">JWT</span>
+                </div>
+                <div class="project-links">
+                  <a href="#" class="btn-icon"><i class="fab fa-github"></i> GitHub</a>
+                  <a href="#" class="btn-icon btn-icon-primary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article class="project-card glass-card" aria-label="Portfolio Website project">
+              <div class="project-img project-img-3" aria-hidden="true">
+                <div class="project-img-overlay"><i class="fas fa-user-circle project-icon"></i></div>
+              </div>
+              <div class="project-body">
+                <div class="project-category-badge frontend">Frontend</div>
+                <h3 class="project-title">Portfolio Website</h3>
+                <p class="project-desc">Personal portfolio with animations and responsive design.</p>
+                <div class="project-tags">
+                  <span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">GSAP</span>
+                </div>
+                <div class="project-links">
+                  <a href="#" class="btn-icon"><i class="fab fa-github"></i> GitHub</a>
+                  <a href="#" class="btn-icon btn-icon-primary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="swiper-pagination" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CURRENTLY LEARNING SECTION
+  ============================================================ -->
+  <section id="learning" class="section" aria-label="Currently learning">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Currently <span class="gradient-text">Learning</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+        <p class="section-subtitle">Expanding my skillset every day</p>
+      </div>
+
+      <div class="learning-grid">
+        <!-- Redux -->
+        <div class="learning-card glass-card" data-aos="fade-up" data-aos-delay="50">
+          <div class="learning-ring-wrap">
+            <svg class="progress-ring" width="100" height="100" viewBox="0 0 100 100" role="img" aria-label="Redux: 40% progress">
+              <circle class="ring-bg" cx="50" cy="50" r="40" />
+              <circle class="ring-fill" cx="50" cy="50" r="40" data-pct="40" stroke-dasharray="251.2" stroke-dashoffset="251.2" />
+            </svg>
+            <span class="ring-pct">40%</span>
+          </div>
+          <img src="https://skillicons.dev/icons?i=redux" alt="Redux icon" class="learning-icon" loading="lazy" />
+          <h3 class="learning-name">Redux</h3>
+          <span class="in-progress-badge">
+            <span class="pulse-dot" aria-hidden="true"></span> In Progress
+          </span>
+        </div>
+
+        <!-- TypeScript -->
+        <div class="learning-card glass-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="learning-ring-wrap">
+            <svg class="progress-ring" width="100" height="100" viewBox="0 0 100 100" role="img" aria-label="TypeScript: 45% progress">
+              <circle class="ring-bg" cx="50" cy="50" r="40" />
+              <circle class="ring-fill" cx="50" cy="50" r="40" data-pct="45" stroke-dasharray="251.2" stroke-dashoffset="251.2" />
+            </svg>
+            <span class="ring-pct">45%</span>
+          </div>
+          <img src="https://skillicons.dev/icons?i=typescript" alt="TypeScript icon" class="learning-icon" loading="lazy" />
+          <h3 class="learning-name">TypeScript</h3>
+          <span class="in-progress-badge">
+            <span class="pulse-dot" aria-hidden="true"></span> In Progress
+          </span>
+        </div>
+
+        <!-- REST APIs -->
+        <div class="learning-card glass-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="learning-ring-wrap">
+            <svg class="progress-ring" width="100" height="100" viewBox="0 0 100 100" role="img" aria-label="REST APIs: 55% progress">
+              <circle class="ring-bg" cx="50" cy="50" r="40" />
+              <circle class="ring-fill" cx="50" cy="50" r="40" data-pct="55" stroke-dasharray="251.2" stroke-dashoffset="251.2" />
+            </svg>
+            <span class="ring-pct">55%</span>
+          </div>
+          <div class="learning-icon-placeholder" aria-hidden="true"><i class="fas fa-plug"></i></div>
+          <h3 class="learning-name">REST APIs</h3>
+          <span class="in-progress-badge">
+            <span class="pulse-dot" aria-hidden="true"></span> In Progress
+          </span>
+        </div>
+
+        <!-- Auth -->
+        <div class="learning-card glass-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="learning-ring-wrap">
+            <svg class="progress-ring" width="100" height="100" viewBox="0 0 100 100" role="img" aria-label="Auth & Authorization: 50% progress">
+              <circle class="ring-bg" cx="50" cy="50" r="40" />
+              <circle class="ring-fill" cx="50" cy="50" r="40" data-pct="50" stroke-dasharray="251.2" stroke-dashoffset="251.2" />
+            </svg>
+            <span class="ring-pct">50%</span>
+          </div>
+          <div class="learning-icon-placeholder" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="learning-name">Auth & Authorization</h3>
+          <span class="in-progress-badge">
+            <span class="pulse-dot" aria-hidden="true"></span> In Progress
+          </span>
+        </div>
+
+        <!-- Clean Code -->
+        <div class="learning-card glass-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="learning-ring-wrap">
+            <svg class="progress-ring" width="100" height="100" viewBox="0 0 100 100" role="img" aria-label="Clean Code Practices: 60% progress">
+              <circle class="ring-bg" cx="50" cy="50" r="40" />
+              <circle class="ring-fill" cx="50" cy="50" r="40" data-pct="60" stroke-dasharray="251.2" stroke-dashoffset="251.2" />
+            </svg>
+            <span class="ring-pct">60%</span>
+          </div>
+          <div class="learning-icon-placeholder" aria-hidden="true"><i class="fas fa-code"></i></div>
+          <h3 class="learning-name">Clean Code Practices</h3>
+          <span class="in-progress-badge">
+            <span class="pulse-dot" aria-hidden="true"></span> In Progress
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GITHUB STATS SECTION
+  ============================================================ -->
+  <section id="github-stats" class="section section-alt" aria-label="GitHub statistics">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">GitHub <span class="gradient-text">Stats</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+        <p class="section-subtitle">My open-source journey in numbers</p>
+      </div>
+
+      <div class="github-stats-grid">
+        <div class="github-stat-card glass-card" data-aos="fade-up" data-aos-delay="50">
+          <img
+            src="https://github-readme-stats.vercel.app/api?username=debangshidas04304&show_icons=true&theme=tokyonight&hide_border=true"
+            alt="Debangshi Das GitHub Stats"
+            class="github-stat-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="github-stat-card glass-card" data-aos="fade-up" data-aos-delay="100">
+          <img
+            src="https://github-readme-streak-stats.herokuapp.com/?user=debangshidas04304&theme=tokyonight&hide_border=true"
+            alt="Debangshi Das GitHub Streak"
+            class="github-stat-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="github-stat-card glass-card" data-aos="fade-up" data-aos-delay="150">
+          <img
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=debangshidas04304&layout=compact&theme=tokyonight&hide_border=true"
+            alt="Debangshi Das Top Languages"
+            class="github-stat-img"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="github-cta" data-aos="fade-up" data-aos-delay="200">
+        <a href="https://github.com/debangshidas04304" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <i class="fab fa-github" aria-hidden="true"></i> View GitHub Profile
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOBBIES SECTION
+  ============================================================ -->
+  <section id="hobbies" class="section" aria-label="Hobbies and interests">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Beyond <span class="gradient-text">Code</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+        <p class="section-subtitle">Things that recharge my creativity</p>
+      </div>
+
+      <div class="hobbies-grid">
+        <!-- Music -->
+        <div class="hobby-flip-card" data-aos="fade-up" data-aos-delay="50" tabindex="0" aria-label="Music hobby card">
+          <div class="hobby-inner">
+            <div class="hobby-front glass-card" aria-hidden="true">
+              <span class="hobby-emoji">🎧</span>
+              <h3 class="hobby-title">Music</h3>
+              <p class="hobby-hint">Hover to reveal</p>
+            </div>
+            <div class="hobby-back glass-card">
+              <span class="hobby-emoji">🎧</span>
+              <p class="hobby-back-text">"Music is my therapy – headphones on, world off!"</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cooking -->
+        <div class="hobby-flip-card" data-aos="fade-up" data-aos-delay="100" tabindex="0" aria-label="Cooking hobby card">
+          <div class="hobby-inner">
+            <div class="hobby-front glass-card" aria-hidden="true">
+              <span class="hobby-emoji">🍳</span>
+              <h3 class="hobby-title">Cooking</h3>
+              <p class="hobby-hint">Hover to reveal</p>
+            </div>
+            <div class="hobby-back glass-card">
+              <span class="hobby-emoji">🍳</span>
+              <p class="hobby-back-text">"I cook like I code – experimenting until it's perfect!"</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Movies -->
+        <div class="hobby-flip-card" data-aos="fade-up" data-aos-delay="150" tabindex="0" aria-label="Movies hobby card">
+          <div class="hobby-inner">
+            <div class="hobby-front glass-card" aria-hidden="true">
+              <span class="hobby-emoji">🎬</span>
+              <h3 class="hobby-title">Movies</h3>
+              <p class="hobby-hint">Hover to reveal</p>
+            </div>
+            <div class="hobby-back glass-card">
+              <span class="hobby-emoji">🎬</span>
+              <p class="hobby-back-text">"A good movie is like a great algorithm – captivating end to end!"</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dancing -->
+        <div class="hobby-flip-card" data-aos="fade-up" data-aos-delay="200" tabindex="0" aria-label="Dancing hobby card">
+          <div class="hobby-inner">
+            <div class="hobby-front glass-card" aria-hidden="true">
+              <span class="hobby-emoji">💃</span>
+              <h3 class="hobby-title">Dancing</h3>
+              <p class="hobby-hint">Hover to reveal</p>
+            </div>
+            <div class="hobby-back glass-card">
+              <span class="hobby-emoji">💃</span>
+              <p class="hobby-back-text">"Dancing is my way of debugging stress!"</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Friends -->
+        <div class="hobby-flip-card" data-aos="fade-up" data-aos-delay="250" tabindex="0" aria-label="Friends hobby card">
+          <div class="hobby-inner">
+            <div class="hobby-front glass-card" aria-hidden="true">
+              <span class="hobby-emoji">💬</span>
+              <h3 class="hobby-title">Friends</h3>
+              <p class="hobby-hint">Hover to reveal</p>
+            </div>
+            <div class="hobby-back glass-card">
+              <span class="hobby-emoji">💬</span>
+              <p class="hobby-back-text">"Best conversations happen over chai and code!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT SECTION
+  ============================================================ -->
+  <section id="contact" class="section section-alt" aria-label="Contact me">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+        <p class="section-subtitle">Let's build something amazing together</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info" data-aos="fade-right" data-aos-delay="100">
+          <h3 class="contact-heading">Let's Talk!</h3>
+          <p class="contact-text">
+            I'm open to internship opportunities, freelance projects, and collaborative learning. 
+            Feel free to reach out — I'd love to connect!
+          </p>
+
+          <ul class="contact-details" aria-label="Contact details">
+            <li class="contact-detail">
+              <div class="contact-icon-wrap" aria-hidden="true">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <p class="contact-detail-label">Location</p>
+                <p class="contact-detail-value">West Bengal, India</p>
+              </div>
+            </li>
+            <li class="contact-detail">
+              <div class="contact-icon-wrap" aria-hidden="true">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <p class="contact-detail-label">Email</p>
+                <p class="contact-detail-value">debangshidas04304@gmail.com</p>
+              </div>
+            </li>
+            <li class="contact-detail">
+              <div class="contact-icon-wrap" aria-hidden="true">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div>
+                <p class="contact-detail-label">College</p>
+                <p class="contact-detail-value">MAKAUT, West Bengal</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="contact-socials" aria-label="Social links">
+            <a href="https://github.com/debangshidas04304" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+              <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Gmail">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrap" data-aos="fade-left" data-aos-delay="200">
+          <form
+            class="contact-form glass-card"
+            id="contactForm"
+            x-data="{ loading: false, sent: false }"
+            @submit.prevent="loading = true; setTimeout(() => { loading = false; sent = true; }, 2000)"
+            novalidate
+            aria-label="Contact form"
+          >
+            <div class="float-label-group">
+              <input
+                type="text"
+                id="contactName"
+                class="float-input"
+                placeholder=" "
+                required
+                autocomplete="name"
+                aria-label="Your name"
+              />
+              <label for="contactName" class="float-label">Your Name</label>
+            </div>
+
+            <div class="float-label-group">
+              <input
+                type="email"
+                id="contactEmail"
+                class="float-input"
+                placeholder=" "
+                required
+                autocomplete="email"
+                aria-label="Your email"
+              />
+              <label for="contactEmail" class="float-label">Your Email</label>
+            </div>
+
+            <div class="float-label-group">
+              <textarea
+                id="contactMessage"
+                class="float-input float-textarea"
+                placeholder=" "
+                required
+                rows="5"
+                aria-label="Your message"
+              ></textarea>
+              <label for="contactMessage" class="float-label">Your Message</label>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary btn-submit"
+              :disabled="loading || sent"
+              aria-live="polite"
+            >
+              <template x-if="!loading && !sent">
+                <span><i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message</span>
+              </template>
+              <template x-if="loading">
+                <span><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending...</span>
+              </template>
+              <template x-if="sent">
+                <span><i class="fas fa-check-circle" aria-hidden="true"></i> Message Sent!</span>
+              </template>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-logo" aria-label="Debangshi Das logo">DD</div>
+      <p class="footer-quote">"Every day I try to become better than I was yesterday."</p>
+      <div class="footer-socials" aria-label="Social media links">
+        <a href="https://github.com/debangshidas04304" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="#" class="social-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <a href="#" class="social-icon" aria-label="Gmail">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2025 Debangshi Das. All rights reserved.</p>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- AOS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Swiper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Custom Script -->
+  <script src="script.js"></script>
+</body>
+</html>
