@@ -1,8 +1,9 @@
 /* ============================================================
    script.js – Debangshi Das Portfolio
-   Handles: Preloader, Cursor, Navbar, Particles, GSAP,
+   Handles: Preloader, Cursor, Navbar, Three.js Hero, GSAP,
             Typed.js, AOS, Counters, Progress Bars, SVG Rings,
-            Project Filter, Swiper, Smooth Scroll
+            Project Filter, Swiper, Smooth Scroll, GitHub API,
+            Dark/Light Mode Toggle
 ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -98,56 +99,120 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ----------------------------------------------------------
-     5. PARTICLES.JS INIT
+     5. THREE.JS NEURAL-NETWORK HERO ANIMATION
   ---------------------------------------------------------- */
-  if (typeof particlesJS !== 'undefined') {
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 70, density: { enable: true, value_area: 900 } },
-        color: { value: ['#7c3aed', '#2563eb', '#a78bfa', '#60a5fa'] },
-        shape: { type: 'circle' },
-        opacity: {
-          value: 0.45,
-          random: true,
-          anim: { enable: true, speed: 0.8, opacity_min: 0.1, sync: false }
-        },
-        size: {
-          value: 3,
-          random: true,
-          anim: { enable: true, speed: 2, size_min: 0.3, sync: false }
-        },
-        line_linked: {
-          enable: true,
-          distance: 140,
-          color: '#7c3aed',
-          opacity: 0.12,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 1.2,
-          direction: 'none',
-          random: true,
-          straight: false,
-          out_mode: 'out',
-          bounce: false
+  (function initThreeHero() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
+
+    const isMobile = window.innerWidth < 768;
+    const PARTICLE_COUNT = isMobile ? 50 : 100;
+    const CONNECTION_DIST = isMobile ? 90 : 130;
+    const SPEED = 0.35;
+
+    // Renderer (antialias off on mobile for performance, on for desktop)
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
+    camera.position.z = 400;
+
+    // Particle positions & velocities
+    const positions  = new Float32Array(PARTICLE_COUNT * 3);
+    const velocities = new Float32Array(PARTICLE_COUNT * 3);
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const i3 = i * 3;
+      positions[i3]     = (Math.random() - 0.5) * 600;
+      positions[i3 + 1] = (Math.random() - 0.5) * 400;
+      positions[i3 + 2] = (Math.random() - 0.5) * 100;
+      velocities[i3]     = (Math.random() - 0.5) * SPEED;
+      velocities[i3 + 1] = (Math.random() - 0.5) * SPEED;
+      velocities[i3 + 2] = 0;
+    }
+
+    // Points
+    const pointGeo = new THREE.BufferGeometry();
+    pointGeo.setAttribute('position', new THREE.BufferAttribute(positions.slice(), 3));
+    const pointMat = new THREE.PointsMaterial({ size: 2.5, color: 0xa78bfa, transparent: true, opacity: 0.8 });
+    const points = new THREE.Points(pointGeo, pointMat);
+    scene.add(points);
+
+    // Lines (pre-allocate max connections)
+    const MAX_SEGS    = PARTICLE_COUNT * PARTICLE_COUNT;
+    const linePosArr  = new Float32Array(MAX_SEGS * 6);
+    const lineGeo     = new THREE.BufferGeometry();
+    lineGeo.setAttribute('position', new THREE.BufferAttribute(linePosArr, 3));
+    const lineMat  = new THREE.LineBasicMaterial({ color: 0x7c3aed, transparent: true, opacity: 0.18 });
+    const lineMesh = new THREE.LineSegments(lineGeo, lineMat);
+    scene.add(lineMesh);
+
+    const pts = pointGeo.attributes.position.array;
+
+    let rafId;
+    let active = true;
+
+    function animate() {
+      if (!active) return;
+      rafId = requestAnimationFrame(animate);
+
+      // Move particles
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const i3 = i * 3;
+        pts[i3]     += velocities[i3];
+        pts[i3 + 1] += velocities[i3 + 1];
+        if (pts[i3]     >  300 || pts[i3]     < -300) velocities[i3]     *= -1;
+        if (pts[i3 + 1] >  200 || pts[i3 + 1] < -200) velocities[i3 + 1] *= -1;
+      }
+      pointGeo.attributes.position.needsUpdate = true;
+
+      // Build connections
+      let segCount = 0;
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
+          const dx = pts[i*3] - pts[j*3];
+          const dy = pts[i*3+1] - pts[j*3+1];
+          if (dx * dx + dy * dy < CONNECTION_DIST * CONNECTION_DIST) {
+            const base = segCount * 6;
+            linePosArr[base]     = pts[i*3];
+            linePosArr[base + 1] = pts[i*3 + 1];
+            linePosArr[base + 2] = pts[i*3 + 2];
+            linePosArr[base + 3] = pts[j*3];
+            linePosArr[base + 4] = pts[j*3 + 1];
+            linePosArr[base + 5] = pts[j*3 + 2];
+            segCount++;
+          }
         }
-      },
-      interactivity: {
-        detect_on: 'canvas',
-        events: {
-          onhover: { enable: true, mode: 'grab' },
-          onclick: { enable: true, mode: 'push' },
-          resize: true
-        },
-        modes: {
-          grab:  { distance: 160, line_linked: { opacity: 0.4 } },
-          push:  { particles_nb: 3 }
-        }
-      },
-      retina_detect: true
+      }
+      lineGeo.attributes.position.needsUpdate = true;
+      lineGeo.setDrawRange(0, segCount * 2);
+
+      renderer.render(scene, camera);
+    }
+
+    // Pause when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        active = false;
+        cancelAnimationFrame(rafId);
+      } else {
+        active = true;
+        animate();
+      }
     });
-  }
+
+    // Responsive resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }, { passive: true });
+
+    animate();
+  }());
 
   /* ----------------------------------------------------------
      6. TYPED.JS
@@ -487,5 +552,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.2 });
     obs.observe(skillsSection);
   }
+
+  /* ----------------------------------------------------------
+     DARK / LIGHT MODE TOGGLE
+  ---------------------------------------------------------- */
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const themeIcon      = document.getElementById('themeIcon');
+
+  function applyTheme(isDark) {
+    document.body.classList.toggle('dark',  isDark);
+    document.body.classList.toggle('light', !isDark);
+    if (themeIcon) {
+      themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+    }
+    try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (_) {}
+  }
+
+  // Initialize from saved preference
+  const savedTheme = (() => { try { return localStorage.getItem('theme'); } catch (_) { return null; } })();
+  applyTheme(savedTheme !== 'light'); // default dark
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      applyTheme(!document.body.classList.contains('dark'));
+    });
+  }
+
+  /* ----------------------------------------------------------
+     GITHUB API – live profile card (cached 24 h)
+  ---------------------------------------------------------- */
+  (function loadGitHubProfile() {
+    const GITHUB_USER   = 'debangshidas04304';
+    const CACHE_KEY     = 'gh_profile_' + GITHUB_USER;
+    const CACHE_TTL     = 24 * 60 * 60 * 1000; // 24 hours
+    const FALLBACK_BIO  = 'Full Stack Developer · MCA Student · MERN Enthusiast';
+
+    function renderProfile(data) {
+      const avatar    = document.getElementById('gh-avatar');
+      const name      = document.getElementById('gh-name');
+      const login     = document.getElementById('gh-login');
+      const bio       = document.getElementById('gh-bio');
+      const repos     = document.getElementById('gh-repos');
+      const followers = document.getElementById('gh-followers');
+      const following = document.getElementById('gh-following');
+
+      if (avatar)    { avatar.src = data.avatar_url; avatar.alt = data.name || GITHUB_USER; }
+      if (name)      name.textContent    = data.name    || GITHUB_USER;
+      if (login)     login.textContent   = '@' + data.login;
+      if (bio)       bio.textContent     = data.bio     || FALLBACK_BIO;
+      if (repos)     repos.textContent   = data.public_repos;
+      if (followers) followers.textContent = data.followers;
+      if (following) following.textContent = data.following;
+    }
+
+    // Try cache first
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { ts, data } = JSON.parse(cached);
+        if (Date.now() - ts < CACHE_TTL) { renderProfile(data); return; }
+      }
+    } catch (_) {}
+
+    // Fetch fresh data
+    fetch('https://api.github.com/users/' + GITHUB_USER)
+      .then(r => r.ok ? r.json() : Promise.reject(new Error(`GitHub API failed: ${r.status}`)))
+      .then(data => {
+        renderProfile(data);
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch (_) {}
+      })
+      .catch(() => {
+        // Silently fall back to placeholder bio
+        const bio = document.getElementById('gh-bio');
+        if (bio) bio.textContent = FALLBACK_BIO;
+      });
+  }());
 
 });

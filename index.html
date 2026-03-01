@@ -55,6 +55,9 @@
 
   <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Three.js (loaded early so hero animation starts quickly) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
 <body class="dark" x-data="{ mobileOpen: false }">
 
@@ -88,23 +91,31 @@
         <li><a href="#experience" class="nav-link">Experience</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#learning" class="nav-link">Learning</a></li>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
         <li><a href="#github-stats" class="nav-link">GitHub</a></li>
         <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
 
-      <!-- Hamburger -->
-      <button
-        class="hamburger"
-        @click="mobileOpen = !mobileOpen"
-        :aria-expanded="mobileOpen"
-        aria-controls="mobile-menu"
-        aria-label="Toggle mobile menu"
-      >
-        <span class="ham-bar" :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"></span>
-        <span class="ham-bar" :class="mobileOpen ? 'opacity-0' : ''"></span>
-        <span class="ham-bar" :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"></span>
-      </button>
+      <!-- Theme Toggle + Hamburger -->
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+        </button>
+
+        <!-- Hamburger -->
+        <button
+          class="hamburger"
+          @click="mobileOpen = !mobileOpen"
+          :aria-expanded="mobileOpen"
+          aria-controls="mobile-menu"
+          aria-label="Toggle mobile menu"
+        >
+          <span class="ham-bar" :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"></span>
+          <span class="ham-bar" :class="mobileOpen ? 'opacity-0' : ''"></span>
+          <span class="ham-bar" :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"></span>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Menu -->
@@ -121,6 +132,7 @@
         <li><a href="#experience"  class="mobile-link" @click="mobileOpen = false" role="menuitem">Experience</a></li>
         <li><a href="#projects"    class="mobile-link" @click="mobileOpen = false" role="menuitem">Projects</a></li>
         <li><a href="#learning"    class="mobile-link" @click="mobileOpen = false" role="menuitem">Learning</a></li>
+        <li><a href="#resume"      class="mobile-link" @click="mobileOpen = false" role="menuitem">Resume</a></li>
         <li><a href="#github-stats" class="mobile-link" @click="mobileOpen = false" role="menuitem">GitHub</a></li>
         <li><a href="#hobbies"     class="mobile-link" @click="mobileOpen = false" role="menuitem">Hobbies</a></li>
         <li><a href="#contact"     class="mobile-link" @click="mobileOpen = false" role="menuitem">Contact</a></li>
@@ -132,8 +144,8 @@
        HERO SECTION
   ============================================================ -->
   <section id="hero" class="hero-section" aria-label="Hero introduction">
-    <!-- Particles background -->
-    <div id="particles-js" aria-hidden="true"></div>
+    <!-- Three.js neural-network background -->
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
     <!-- Floating tech badges -->
     <div class="floating-badges" aria-hidden="true">
@@ -156,7 +168,7 @@
         <a href="#projects" class="btn btn-primary">
           <i class="fas fa-briefcase" aria-hidden="true"></i> View My Work
         </a>
-        <a href="#" class="btn btn-outline" aria-label="Download Resume">
+        <a href="https://drive.google.com/uc?export=download&id=1UZIJN6GJLgaVWjRijWnTZoT5y08kXl4t" class="btn btn-outline" target="_blank" rel="noopener noreferrer" aria-label="Download Resume">
           <i class="fas fa-download" aria-hidden="true"></i> Download Resume
         </a>
       </div>
@@ -165,10 +177,10 @@
         <a href="https://github.com/debangshidas04304" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile">
           <i class="fab fa-github" aria-hidden="true"></i>
         </a>
-        <a href="#" class="social-icon" aria-label="LinkedIn Profile">
+        <a href="https://www.linkedin.com/in/debangshi-das-158395308/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile">
           <i class="fab fa-linkedin-in" aria-hidden="true"></i>
         </a>
-        <a href="#" class="social-icon" aria-label="Gmail">
+        <a href="mailto:debadas04304@gmail.com" class="social-icon" aria-label="Gmail">
           <i class="fas fa-envelope" aria-hidden="true"></i>
         </a>
       </div>
@@ -721,6 +733,52 @@
   </section>
 
   <!-- ============================================================
+       RESUME SECTION
+  ============================================================ -->
+  <section id="resume" class="section" aria-label="Resume">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">My <span class="gradient-text">Resume</span></h2>
+        <div class="section-line" aria-hidden="true"></div>
+        <p class="section-subtitle">Download or preview my full resume</p>
+      </div>
+
+      <div class="resume-wrapper" data-aos="fade-up" data-aos-delay="100">
+        <div class="resume-actions">
+          <a
+            href="https://drive.google.com/uc?export=download&id=1UZIJN6GJLgaVWjRijWnTZoT5y08kXl4t"
+            class="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download Resume PDF"
+          >
+            <i class="fas fa-download" aria-hidden="true"></i> Download Resume
+          </a>
+          <a
+            href="https://drive.google.com/file/d/1UZIJN6GJLgaVWjRijWnTZoT5y08kXl4t/view?usp=sharing"
+            class="btn btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Resume in new tab"
+          >
+            <i class="fas fa-external-link-alt" aria-hidden="true"></i> Open Full View
+          </a>
+        </div>
+
+        <div class="resume-embed-wrap glass-card">
+          <iframe
+            src="https://drive.google.com/file/d/1UZIJN6GJLgaVWjRijWnTZoT5y08kXl4t/preview"
+            class="resume-iframe"
+            allow="autoplay"
+            title="Debangshi Das Resume"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        GITHUB STATS SECTION
   ============================================================ -->
   <section id="github-stats" class="section section-alt" aria-label="GitHub statistics">
@@ -729,6 +787,42 @@
         <h2 class="section-title">GitHub <span class="gradient-text">Stats</span></h2>
         <div class="section-line" aria-hidden="true"></div>
         <p class="section-subtitle">My open-source journey in numbers</p>
+      </div>
+
+      <!-- Dynamic GitHub Profile Card -->
+      <div id="github-profile-card" class="github-profile-card glass-card" data-aos="fade-up" data-aos-delay="50" aria-label="GitHub profile summary">
+        <div class="github-profile-avatar-wrap">
+          <img id="gh-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Ccircle cx='48' cy='48' r='48' fill='%231a1a2e'/%3E%3Ccircle cx='48' cy='40' r='18' fill='%237c3aed'/%3E%3Cellipse cx='48' cy='80' rx='28' ry='18' fill='%237c3aed'/%3E%3C/svg%3E" alt="GitHub profile picture" class="github-profile-avatar" loading="lazy" />
+        </div>
+        <div class="github-profile-info">
+          <h3 id="gh-name" class="github-profile-name">Debangshi Das</h3>
+          <p id="gh-login" class="github-profile-login">@debangshidas04304</p>
+          <p id="gh-bio" class="github-profile-bio">Loading bio…</p>
+          <div class="github-profile-meta">
+            <span class="gh-meta-item" aria-label="Public repositories">
+              <i class="fas fa-code-branch" aria-hidden="true"></i>
+              <span id="gh-repos">–</span> Repos
+            </span>
+            <span class="gh-meta-item" aria-label="Followers">
+              <i class="fas fa-users" aria-hidden="true"></i>
+              <span id="gh-followers">–</span> Followers
+            </span>
+            <span class="gh-meta-item" aria-label="Following">
+              <i class="fas fa-user-plus" aria-hidden="true"></i>
+              <span id="gh-following">–</span> Following
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contribution activity graph -->
+      <div class="github-contrib-wrap" data-aos="fade-up" data-aos-delay="80">
+        <img
+          src="https://ghchart.rshah.org/7c3aed/debangshidas04304"
+          alt="Debangshi Das GitHub Contribution Graph"
+          class="github-contrib-graph"
+          loading="lazy"
+        />
       </div>
 
       <div class="github-stats-grid">
@@ -910,10 +1004,10 @@
             <a href="https://github.com/debangshidas04304" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
               <i class="fab fa-github" aria-hidden="true"></i>
             </a>
-            <a href="#" class="social-icon" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/debangshi-das-158395308/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
               <i class="fab fa-linkedin-in" aria-hidden="true"></i>
             </a>
-            <a href="#" class="social-icon" aria-label="Gmail">
+            <a href="mailto:debadas04304@gmail.com" class="social-icon" aria-label="Gmail">
               <i class="fas fa-envelope" aria-hidden="true"></i>
             </a>
           </div>
@@ -1000,10 +1094,10 @@
         <a href="https://github.com/debangshidas04304" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
           <i class="fab fa-github" aria-hidden="true"></i>
         </a>
-        <a href="#" class="social-icon" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/debangshi-das-158395308/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
           <i class="fab fa-linkedin-in" aria-hidden="true"></i>
         </a>
-        <a href="#" class="social-icon" aria-label="Gmail">
+        <a href="mailto:debadas04304@gmail.com" class="social-icon" aria-label="Gmail">
           <i class="fas fa-envelope" aria-hidden="true"></i>
         </a>
       </div>
@@ -1019,8 +1113,6 @@
   <!-- ============================================================
        SCRIPTS
   ============================================================ -->
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
